@@ -2,6 +2,12 @@
 // Application Declaration + UI Router Injection in array argument
 var blocJamsModule = angular.module('blocJamsModule', ['ui.router']);
 
+// Define a Controller & inject its dependencies
+blocJamsModule.controller('MainController', function($scope) {
+    $scope.someText = 'Hello World!';
+    
+});
+
 // Provider used to configure & define default behavior
 myAppModule.config(function($stateProvider, $locationProvider) {
 
