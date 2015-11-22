@@ -1,26 +1,22 @@
-<div class="album">
-         <nav class="navbar"> <!-- nav bar -->
-             <a href="index.html"  class="logo">
-                 <img src="assets/images/bloc_jams_logo.png" alt="bloc jams logo">
-             </a>
-             <div class="links-container">
-                 <a href="collection.html" class="navbar-link">collection</a>
-             </div>
-         </nav>
-         
+<div class="album">         
          <main class="album-view container narrow">
             <section class="clearfix">
                 <div class="column half">
-                    <img src="assets/images/album_covers/01.png" class="album-cover-art" id="cover-art">
+                    <img src=" {{ albums.albumArtUrl }} " class="album-cover-art" id="cover-art">
                 </div>
                 <div class="album-view-details column half">
-                    <h2 class="album-view-title">The Colors</h2>
-                    <h3 class="album-view-artist">Pablo Picasso</h3>
-                    <h5 class="album-view-release-info">1909 Spanish Records</h5>
+                    <h2 class="album-view-title"> {{ albums.name }} </h2>
+                    <h3 class="album-view-artist"> {{ albums.artist }}</h3>
+                    <h5 class="album-view-release-info"> {{ albums.year + " " + albums.label }} </h5>
                 </div>
              </section>
-             <table class="album-view-song-list">
-                 
+             <table class="album-view-song-list" ng-repeat="songInfo in albums.songs">
+                <tr class="album-view-song-item">
+                    <td class="song-item-number">{{ $index + 1 }}</td>
+                    <td class="song-item-title"> {{ songInfo.songName }}</td>
+                    <td class="song-item-duration">{{ songInfo.songLength }}</td>
+                </tr>
+                 {{ listing.songs }} 
              </table>
          </main>
          
@@ -59,8 +55,4 @@
                  </div>
              </div>
          </section>
-         <script src="https://code.jquery.com/jquery-2.1.3.min.js"></script>
-     <script src="https://cdnjs.cloudflare.com/ajax/libs/buzz/1.1.10/buzz.min.js"></script>
-     <script src="scripts/fixtures.js"></script>
-     <script src="scripts/album.js"></script>
 </div>

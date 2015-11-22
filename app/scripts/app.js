@@ -2,27 +2,6 @@
 // Application Declaration + UI Router Injection in array argument
 var blocJamsModule = angular.module('blocJamsModule', ['ui.router']);
 
-// Define a Controller & inject its dependencies
-blocJamsModule.controller('LandingController', function($scope) {
-    $scope.mainTagline = "Turn the Music Up!";
-    
-});
-
-// Define a Controller & inject its dependencies
-blocJamsModule.controller('CollectionController', function($scope) {
-    $scope.someText = 'Collection Page';
-    
-    
-    
-});
-
-
-// Define a Controller & inject its dependencies
-blocJamsModule.controller('AlbumController', function($scope) {
-    $scope.someText = 'Album Page';
-    
-});
-
 
 // Provider used to configure & define default behavior
 blocJamsModule.config(function($stateProvider, $locationProvider) {
@@ -37,27 +16,56 @@ blocJamsModule.config(function($stateProvider, $locationProvider) {
 
     // For this project, need to know how to configure at least four aspects of a state: its name, URL route, controller, and template.
     $stateProvider
-        .state('parent', {
-             url: '/home',
-             abstract: '.index',
-             template: '<ui-view/>'
-         })
-        .state('parent.index', {
-             url: '',
+        .state('landing', {
+             url: '/',
              controller: 'LandingController',
-             templateUrl: '../templates/landing.html'
+             templateUrl: 'app/templates/landing.html'
          })
 
         .state('collection', {
              url: '/collection',
              controller: 'CollectionController',
-             templateUrl: '../templates/collection.html'
+             templateUrl: 'app/templates/collection.html'
          })
 
         .state('album', {
              url: '/album',
              controller: 'AlbumController',
-             templateUrl: '../templates/album.html'
+             templateUrl: 'app/templates/album.html'
          })
     
  });
+
+// Landing Controller & its dependencies
+blocJamsModule.controller('LandingController', function($scope) {
+    $scope.mainTagline = "Turn the Music Up!";
+    
+});
+
+
+
+// Collection Controller & its dependencies
+blocJamsModule.controller('CollectionController', function($scope, $log) {
+    
+var albumCatalog = albumPicasso;
+
+    
+var albumCollection = function(number) {
+    var albumsList = [];
+    for (var i = 0; i <= number; i++) {
+        albumsList.push(angular.copy(albumCatalog));
+        }        
+        return albumsList;
+    }  
+
+    $scope.albumsInfo = albumCollection(11);
+});
+
+
+
+
+// Album Controller & its dependencies
+blocJamsModule.controller('AlbumController', function($scope, $log) {
+    $scope.albumsInfo = albumsArray;
+    $scope.albums = albumsArray.listings[0];
+});
